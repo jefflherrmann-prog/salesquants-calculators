@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#172c1c" />
+  <meta name="description" content="SalesQuants Agent vs. calculators — model AI agent vs. human pipeline economics on the same funnel." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>SalesQuants — Agent vs. Calculators</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <button class="back-btn" id="backBtn" type="button" hidden aria-label="Back to calculators">‹ Calculators</button>
+    <span class="brand-mark" aria-hidden="true">SQ</span>
+    <div>
+      <div class="brand-name">SalesQuants</div>
+      <div class="brand-sub">Agent vs. Calculators</div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- ============ HOME / CALCULATOR PICKER ============ -->
+    <section class="view" id="view-home">
+      <div class="home-intro">
+        <p class="eyebrow">SalesQuants</p>
+        <h1>Agent vs. Calculators</h1>
+        <p class="lede">Should your next pipeline dollar go to an AI agent — or a human? Run both motions through the same funnel with your own numbers. <strong>Results update instantly, and your scenarios save on this device.</strong></p>
+      </div>
+
+      <div class="picker">
+        <button class="calc-card" id="openSdr" type="button">
+          <span class="card-top"><span class="eyebrow">First-year economics</span><span class="badge badge-live">Live</span></span>
+          <h2>Agent vs. SDR</h2>
+          <p>AI outbound agent vs. human SDR seats — cost, meetings, gross profit, ROI and payback.</p>
+        </button>
+
+        <button class="calc-card" id="openRep" type="button">
+          <span class="card-top"><span class="eyebrow">Sales capacity model</span><span class="badge badge-live">Live</span></span>
+          <h2>Agent vs. Rep</h2>
+          <p>Where does an agent create more value — assisting your reps, or automating their work? Both cases, one model.</p>
+        </button>
+
+        <div class="calc-card is-soon" aria-disabled="true">
+          <span class="card-top"><span class="eyebrow">Workload economics</span><span class="badge badge-soon">Coming soon</span></span>
+          <h2>Agent vs. RevOps Analyst</h2>
+          <p>Automation vs. analyst hours on the same RevOps workload. In review — not yet released.</p>
+        </div>
+      </div>
+
+      <p class="home-note">Planning models only — not forecasts. Replace every default with your own validated operating data before making a hiring or technology decision.</p>
+    </section>
+
+    <!-- ============ AGENT vs. SDR CALCULATOR (ported from the live page) ============ -->
+    <section class="view" id="view-sdr" hidden>
+      <header class="intro">
+        <p class="eyebrow">First-year economics</p>
+        <h1>Should your next pipeline dollar go to an SDR—or an agent?</h1>
+        <p class="lede">Compare both motions on the same funnel. Use your own costs, meeting volume, conversion rates, and deal economics. <strong>The result updates instantly.</strong></p>
+      </header>
+
+      <section class="panel inputs-panel" aria-label="Calculator assumptions">
+        <div class="section">
+          <div class="section-head"><h2>Human SDR motion</h2><span class="section-tag tag-sdr">SDR</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="sdrSeats">SDR seats</label><div class="control"><input id="sdrSeats" type="number" min="1" max="500" step="1" value="1"></div></div>
+            <div class="field"><label for="sdrSalary">Base salary per SDR</label><div class="control"><span class="prefix">$</span><input id="sdrSalary" type="number" min="0" step="1000" value="60000"></div></div>
+            <div class="field"><label for="sdrBurden">Fully loaded multiplier</label><div class="control"><input id="sdrBurden" type="number" min="1" max="3" step="0.05" value="1.35"><span class="suffix">×</span></div><p class="helper">Benefits, payroll taxes, equipment, management</p></div>
+            <div class="field"><label for="sdrTools">Annual tools per SDR</label><div class="control"><span class="prefix">$</span><input id="sdrTools" type="number" min="0" step="500" value="12000"></div></div>
+            <div class="field"><label for="sdrMeetings">Qualified meetings / month / SDR</label><div class="control"><input id="sdrMeetings" type="number" min="0" step="1" value="12"></div></div>
+            <div class="field"><label for="sdrRamp">Ramp time</label><div class="control"><input id="sdrRamp" type="number" min="0" max="12" step="0.5" value="3"><span class="suffix">months</span></div></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>Agent motion</h2><span class="section-tag tag-agent">Agent</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="agentAnnual">Annual platform cost</label><div class="control"><span class="prefix">$</span><input id="agentAnnual" type="number" min="0" step="1000" value="36000"></div></div>
+            <div class="field"><label for="agentSetup">One-time setup cost</label><div class="control"><span class="prefix">$</span><input id="agentSetup" type="number" min="0" step="1000" value="15000"></div></div>
+            <div class="field"><label for="oversightHours">Human oversight</label><div class="control"><input id="oversightHours" type="number" min="0" max="80" step="1" value="5"><span class="suffix">hrs/wk</span></div></div>
+            <div class="field"><label for="oversightRate">Oversight hourly cost</label><div class="control"><span class="prefix">$</span><input id="oversightRate" type="number" min="0" step="5" value="75"></div></div>
+            <div class="field"><label for="agentMeetings">Qualified meetings / month</label><div class="control"><input id="agentMeetings" type="number" min="0" step="1" value="18"></div></div>
+            <div class="field"><label for="agentRamp">Ramp time</label><div class="control"><input id="agentRamp" type="number" min="0" max="12" step="0.5" value="1"><span class="suffix">months</span></div></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>Shared funnel economics</h2><span class="section-tag">YOUR FUNNEL</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="oppRate">Meeting-to-opportunity rate</label><div class="control"><input id="oppRate" type="number" min="0" max="100" step="1" value="35"><span class="suffix">%</span></div></div>
+            <div class="field"><label for="winRate">Opportunity win rate</label><div class="control"><input id="winRate" type="number" min="0" max="100" step="1" value="25"><span class="suffix">%</span></div></div>
+            <div class="field"><label for="acv">Average contract value</label><div class="control"><span class="prefix">$</span><input id="acv" type="number" min="0" step="1000" value="20000"></div></div>
+            <div class="field"><label for="grossMargin">Gross margin</label><div class="control"><input id="grossMargin" type="number" min="0" max="100" step="1" value="80"><span class="suffix">%</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel results" aria-live="polite" aria-label="Calculated results">
+        <div class="verdict">
+          <div class="verdict-label">Model verdict</div>
+          <h2 id="verdictTitle">The agent leads on first-year net value.</h2>
+          <p id="verdictCopy">That advantage depends on meeting quality holding up at your entered conversion rates.</p>
+          <span class="advantage" id="advantage">+$0 advantage</span>
+        </div>
+        <div class="result-body">
+          <div class="hero-number">
+            <span class="metric-label">Agent first-year ROI</span>
+            <strong class="metric-value" id="agentRoi">0%</strong>
+            <div class="metric-note" id="payback">Payback: —</div>
+          </div>
+
+          <div class="comparison">
+            <div class="bar-group">
+              <div class="bar-head"><span>Agent net value</span><strong id="agentNet">$0</strong></div>
+              <div class="track"><div class="fill fill-agent" id="agentBar"></div></div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-head"><span>SDR net value</span><strong id="sdrNet">$0</strong></div>
+              <div class="track"><div class="fill fill-sdr" id="sdrBar"></div></div>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini"><span>Agent year-one cost</span><strong id="agentCost">$0</strong><em>setup + platform + oversight</em></div>
+            <div class="mini"><span>SDR year-one cost</span><strong id="sdrCost">$0</strong><em>loaded pay + tools</em></div>
+            <div class="mini"><span>Agent cost / meeting</span><strong id="agentCpm">$0</strong><em>productive first-year meetings</em></div>
+            <div class="mini"><span>SDR cost / meeting</span><strong id="sdrCpm">$0</strong><em>productive first-year meetings</em></div>
+            <div class="mini"><span>Agent gross profit</span><strong id="agentGp">$0</strong><em>from modeled closed revenue</em></div>
+            <div class="mini"><span>SDR gross profit</span><strong id="sdrGp">$0</strong><em>from modeled closed revenue</em></div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="copyBtn" type="button">Copy executive summary</button>
+            <button class="btn" id="csvBtn" type="button">Download CSV</button>
+            <button class="btn" id="resetBtn" type="button">Reset</button>
+          </div>
+          <p class="status" id="status" role="status"></p>
+
+          <div class="notes">
+            <details>
+              <summary>How the model works</summary>
+              <div class="detail-copy">
+                <p>Both options run through the same meeting → opportunity → closed-won funnel. Gross profit equals closed revenue × gross margin. Net value equals gross profit minus first-year cost.</p>
+                <p>Ramp is modeled at 50% productivity during the ramp period, then full productivity after it.</p>
+              </div>
+            </details>
+            <details>
+              <summary>What the math does not capture</summary>
+              <div class="detail-copy">
+                <ul>
+                  <li>Brand risk, deliverability, compliance, and data quality</li>
+                  <li>Conversation quality, territory nuance, and relationship-building</li>
+                  <li>Downstream AE capacity and implementation change management</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+          <p class="model-note">Planning model only—not a forecast. Replace every default with your own validated operating data before making a hiring or technology decision.</p>
+        </div>
+      </aside>
+
+      <!-- Affiliate CTA block (template slot — partner may be swapped).
+           Same block, copy, link and disclosure as the live calculator suite pages. -->
+      <section class="affiliate-cta" aria-label="Recommended tool">
+        <h2>Power your outbound with Instantly</h2>
+        <p>SDR teams run on pipeline. Instantly is the AI-powered cold email platform teams use to scale outreach and book more meetings.</p>
+        <a class="cta-btn" href="https://refer.instantly.ai/vb9cokazjsb1" target="_blank" rel="sponsored noopener">Try Instantly free</a>
+        <p class="disclosure">Disclosure: SalesQuants may earn a commission if you purchase through this link, at no extra cost to you.</p>
+      </section>
+
+      <!-- Email capture block — live Beehiiv subscribe form (News.SalesQuants.com
+           publication), embedded as an iframe: the same form the live Agent vs. Rep
+           web page carries. Referrer is the site root — the app is a single page
+           with hash routes, so there is no per-calculator page URL to attribute. -->
+      <section class="email-capture" aria-label="Email signup">
+        <h2>Get the Agent vs. playbook in your inbox</h2>
+        <p>The model guide, honest benchmarks, and new calculators as we build them. We model, we don't market.</p>
+        <iframe class="beehiiv-embed" src="https://subscribe-forms.beehiiv.com/v3/forms/8625f60e-2189-474d-aa23-2497c6e48e3c?referrer=https%3A%2F%2Fsalesquants.com%2F" title="Subscribe to SalesQuants — get the Agent vs. playbook in your inbox" loading="lazy"></iframe>
+      </section>
+
+      <!-- Saved scenarios (stored on-device in localStorage) -->
+      <section class="panel scenarios" aria-label="Saved scenarios">
+        <h2>Saved scenarios</h2>
+        <p class="helper">Save this run's inputs under a name and reload them later. Scenarios live only on this device.</p>
+        <div class="scenario-save">
+          <div class="control"><input type="text" id="scenarioName" placeholder="Scenario name — e.g. 5-seat team, Q1 plan" aria-label="Scenario name"></div>
+          <button class="btn btn-primary" id="saveScenarioBtn" type="button">Save</button>
+        </div>
+        <ul class="scenario-list" id="scenarioList"></ul>
+        <p class="scenario-empty" id="scenarioEmpty">No saved scenarios yet.</p>
+        <p class="status" id="scenarioStatus" role="status"></p>
+      </section>
+    </section>
+    <!-- ============ AGENT vs. REP CALCULATOR (ported from the standalone page) ============ -->
+    <section class="view" id="view-rep" hidden>
+      <header class="intro">
+        <p class="eyebrow">Sales capacity model</p>
+        <h1>Where does an AI agent create more value?</h1>
+        <p class="lede">Compare two honest cases: helping reps convert recovered time into pipeline, or turning automated work into usable team capacity. <strong>Adjust every assumption — the result updates instantly.</strong></p>
+      </header>
+
+      <section class="panel inputs-panel" aria-label="Calculator assumptions">
+        <div class="section">
+          <div class="section-head"><h2>Sales team</h2></div>
+          <div class="field-grid">
+            <div class="field"><label for="reps">Sales reps</label><div class="control"><input id="reps" type="number" min="1" max="10000" step="1" value="10"><span class="suffix">reps</span></div><p class="helper">Quota-carrying headcount</p></div>
+            <div class="field"><label for="cost">Loaded cost / rep</label><div class="control"><span class="prefix">$</span><input id="cost" type="number" min="0" step="5000" value="145000"></div><p class="helper">Salary, benefits and overhead</p></div>
+            <div class="field"><label for="quota">Annual quota / rep</label><div class="control"><span class="prefix">$</span><input id="quota" type="number" min="0" step="50000" value="1200000"></div><p class="helper">At 100% attainment</p></div>
+            <div class="field"><label for="attainment">Current attainment</label><div class="control"><input id="attainment" type="number" min="0" max="200" step="5" value="65"><span class="suffix">%</span></div><p class="helper">Team average</p></div>
+            <div class="field"><label for="margin">Gross margin</label><div class="control"><input id="margin" type="number" min="0" max="100" step="5" value="70"><span class="suffix">%</span></div><p class="helper">Applied to incremental revenue</p></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>Work the agent can change</h2></div>
+          <div class="field-grid">
+            <div class="field"><label for="weekHours">Workweek</label><div class="control"><input id="weekHours" type="number" min="1" max="100" step="1" value="45"><span class="suffix">hrs</span></div><p class="helper">Total hours per rep</p></div>
+            <div class="field"><label for="autoHours">Automatable work</label><div class="control"><input id="autoHours" type="number" min="0" max="100" step="1" value="15"><span class="suffix">hrs</span></div><p class="helper">Admin, research, prep, follow-up</p></div>
+            <div class="field"><label for="automation">Agent automation</label><div class="control"><input id="automation" type="number" min="0" max="100" step="5" value="60"><span class="suffix">%</span></div><p class="helper">Share of that work handled</p></div>
+            <div class="field"><label for="capture">Productivity capture</label><div class="control"><input id="capture" type="number" min="0" max="100" step="5" value="50"><span class="suffix">%</span></div><p class="helper">Recovered time that becomes selling</p></div>
+            <div class="field"><label for="adoption">Rep adoption</label><div class="control"><input id="adoption" type="number" min="0" max="100" step="5" value="80"><span class="suffix">%</span></div><p class="helper">Team share using it consistently</p></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>Investment</h2></div>
+          <div class="field-grid">
+            <div class="field"><label for="license">Agent cost / rep / year</label><div class="control"><span class="prefix">$</span><input id="license" type="number" min="0" step="1000" value="10000"></div><p class="helper">Software and usage</p></div>
+            <div class="field"><label for="setup">One-time rollout cost</label><div class="control"><span class="prefix">$</span><input id="setup" type="number" min="0" step="5000" value="35000"></div><p class="helper">Integration, enablement, governance</p></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel results" aria-live="polite" aria-label="Calculated results">
+        <div class="verdict">
+          <div class="verdict-label">Model signal</div>
+          <h2 id="repVerdictTitle">Assist the team first</h2>
+          <p id="repVerdictText">The modeled gross-profit lift is stronger than the value of capacity alone. Pilot the workflow before treating time saved as revenue.</p>
+          <div class="rep-verdict-number"><strong id="repVerdictDelta">+$0</strong><span>net value advantage</span></div>
+        </div>
+        <div class="result-body">
+          <div class="rep-scenarios">
+            <article class="rep-card rep-assist">
+              <div class="rep-card-head">
+                <div><h3>Assist the reps</h3><p>Convert recovered time into revenue</p></div>
+                <span class="rep-tag" id="repAssistTag">Stronger case</span>
+              </div>
+              <div class="rep-big"><span>Year-one net value</span><strong id="repAssistNet">$0</strong></div>
+              <dl class="rep-rows">
+                <div class="rep-row"><dt>Incremental revenue</dt><dd id="repAssistRevenue">$0</dd></div>
+                <div class="rep-row"><dt>Gross-profit lift</dt><dd id="repAssistGross">$0</dd></div>
+                <div class="rep-row"><dt>Year-one ROI</dt><dd id="repAssistROI">—</dd></div>
+                <div class="rep-row"><dt>Payback</dt><dd id="repAssistPayback">—</dd></div>
+              </dl>
+            </article>
+
+            <article class="rep-card rep-capacity">
+              <div class="rep-card-head">
+                <div><h3>Automate the work</h3><p>Use time saved as deployable capacity</p></div>
+                <span class="rep-tag" id="repCapacityTag">Second case</span>
+              </div>
+              <div class="rep-big"><span>Year-one net value</span><strong id="repCapacityNet">$0</strong></div>
+              <dl class="rep-rows">
+                <div class="rep-row"><dt>Capacity unlocked</dt><dd id="repCapacityFte">—</dd></div>
+                <div class="rep-row"><dt>Capacity value</dt><dd id="repCapacityValue">$0</dd></div>
+                <div class="rep-row"><dt>Year-one ROI</dt><dd id="repCapacityROI">—</dd></div>
+                <div class="rep-row"><dt>Payback</dt><dd id="repCapacityPayback">—</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <div class="rep-common" aria-label="Shared investment metrics">
+            <div class="rep-common-item"><span>Annual recurring cost</span><strong id="repRecurringCost">$0</strong></div>
+            <div class="rep-common-item"><span>Year-one investment</span><strong id="repTotalCost">$0</strong></div>
+            <div class="rep-common-item"><span>Hours returned / year</span><strong id="repHoursReturned">0</strong></div>
+          </div>
+
+          <section class="rep-plan" aria-label="Pilot guardrails">
+            <h3>Pilot guardrails</h3>
+            <ol class="rep-steps">
+              <li><div><strong id="repPilotScope">Start with 2 reps for 60–90 days</strong><span>Choose one repeatable workflow, not a broad “AI transformation.”</span></div></li>
+              <li><div><strong id="repTimeThreshold">Require 9.0 hours returned per rep each week</strong><span>Measure completed work and usable time, not prompts or logins.</span></div></li>
+              <li><div><strong id="repRevenueThreshold">Prove at least $164K in annualized revenue lift</strong><span>That is the break-even lift at your margin and year-one investment.</span></div></li>
+            </ol>
+          </section>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="repCopyBtn" type="button">Copy summary</button>
+            <button class="btn" id="repResetBtn" type="button">Reset</button>
+          </div>
+          <p class="status" id="repStatus" role="status"></p>
+
+          <div class="notes">
+            <details>
+              <summary>How the model works</summary>
+              <div class="detail-copy">
+                <p><strong>Assist case:</strong> baseline revenue × automatable share of the workweek × agent automation × productivity capture × adoption. Gross margin converts the revenue lift to gross profit.</p>
+                <p><strong>Capacity case:</strong> rep count × automatable share × agent automation × adoption. That FTE-equivalent capacity is valued at loaded rep cost.</p>
+                <p><strong>ROI:</strong> (benefit − recurring cost − rollout cost) ÷ (recurring cost + rollout cost).</p>
+                <p>This is a decision model, not a forecast. The two cases are alternative value lenses and should not be added together. Capacity only becomes savings when hiring is avoided, workload is redeployed, or headcount changes. Revenue lift assumes recovered time produces at the team’s current rate.</p>
+              </div>
+            </details>
+          </div>
+          <p class="model-note">Planning model only—not a forecast. Replace every default with your own validated operating data before making a hiring or technology decision.</p>
+        </div>
+      </aside>
+
+      <!-- Email capture block — live Beehiiv subscribe form, same embed as the SDR
+           view (one publication form for the whole suite). The Rep view carries the
+           email capture only: no affiliate CTA (Instantly is SDR-page only). -->
+      <section class="email-capture" aria-label="Email signup">
+        <h2>Get the Agent vs. playbook in your inbox</h2>
+        <p>The model guide, honest benchmarks, and new calculators as we build them. We model, we don't market.</p>
+        <iframe class="beehiiv-embed" src="https://subscribe-forms.beehiiv.com/v3/forms/8625f60e-2189-474d-aa23-2497c6e48e3c?referrer=https%3A%2F%2Fsalesquants.com%2F" title="Subscribe to SalesQuants — get the Agent vs. playbook in your inbox" loading="lazy"></iframe>
+      </section>
+
+      <!-- Saved scenarios (stored on-device in localStorage) -->
+      <section class="panel scenarios" aria-label="Saved scenarios">
+        <h2>Saved scenarios</h2>
+        <p class="helper">Save this run's inputs under a name and reload them later. Scenarios live only on this device.</p>
+        <div class="scenario-save">
+          <div class="control"><input type="text" id="repScenarioName" placeholder="Scenario name — e.g. 25-rep team, capacity case" aria-label="Scenario name"></div>
+          <button class="btn btn-primary" id="repSaveScenarioBtn" type="button">Save</button>
+        </div>
+        <ul class="scenario-list" id="repScenarioList"></ul>
+        <p class="scenario-empty" id="repScenarioEmpty">No saved scenarios yet.</p>
+        <p class="status" id="repScenarioStatus" role="status"></p>
+      </section>
+    </section>
+  </main>
+
+  <script src="model.js"></script>
+  <script src="model-rep.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
