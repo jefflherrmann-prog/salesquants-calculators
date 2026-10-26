@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- SalesQuants app icon: ink-green tile, lime "SQ" monogram over a calculator keypad hint. -->
+  <rect width="512" height="512" rx="96" fill="#172c1c"/>
+  <text x="256" y="268" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="196" font-weight="800" letter-spacing="-8" fill="#d9ff58">SQ</text>
+  <g fill="#d9ff58" opacity="0.9">
+    <rect x="176" y="330" width="34" height="34" rx="7"/>
+    <rect x="239" y="330" width="34" height="34" rx="7"/>
+    <rect x="302" y="330" width="34" height="34" rx="7"/>
+    <rect x="176" y="382" width="34" height="34" rx="7"/>
+    <rect x="239" y="382" width="34" height="34" rx="7"/>
+    <rect x="302" y="382" width="34" height="34" rx="7"/>
+  </g>
+</svg>
