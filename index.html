@@ -45,6 +45,12 @@
           <p>Where does an agent create more value — assisting your reps, or automating their work? Both cases, one model.</p>
         </button>
 
+        <button class="calc-card" id="openAmp" type="button">
+          <span class="card-top"><span class="eyebrow">The amplification case</span><span class="badge badge-live">Live</span></span>
+          <h2>Amplified Rep</h2>
+          <p>No replacement math — what AI adds to every rep you already have: more volume, more replies, more meetings, more pipeline.</p>
+        </button>
+
         <div class="calc-card is-soon" aria-disabled="true">
           <span class="card-top"><span class="eyebrow">Workload economics</span><span class="badge badge-soon">Coming soon</span></span>
           <h2>Agent vs. RevOps Analyst</h2>
@@ -331,10 +337,139 @@
         <p class="status" id="repScenarioStatus" role="status"></p>
       </section>
     </section>
+    <!-- ============ AMPLIFIED REP CALCULATOR ============ -->
+    <section class="view" id="view-amp" hidden>
+      <header class="intro">
+        <p class="eyebrow">The amplification case</p>
+        <h1>Same team. More pipeline. What does AI add to every rep?</h1>
+        <p class="lede">Skip the replacement debate. Keep your reps, hand them AI, and model what happens to volume, replies, meetings, and pipeline. <strong>The result updates instantly.</strong></p>
+      </header>
+
+      <section class="panel inputs-panel" aria-label="Calculator assumptions">
+        <div class="section">
+          <div class="section-head"><h2>Your team today</h2><span class="section-tag tag-sdr">TODAY</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="ampReps">Reps / SDRs</label><div class="control"><input id="ampReps" type="number" min="1" max="10000" step="1" value="5"></div></div>
+            <div class="field"><label for="ampTouches">Outbound touches / rep / month</label><div class="control"><input id="ampTouches" type="number" min="0" step="50" value="1200"></div><p class="helper">Emails, calls, social touches — all channels</p></div>
+            <div class="field"><label for="ampReplyRate">Reply rate</label><div class="control"><input id="ampReplyRate" type="number" min="0" max="100" step="0.5" value="6"><span class="suffix">%</span></div></div>
+            <div class="field"><label for="ampMeetingRate">Replies that become meetings</label><div class="control"><input id="ampMeetingRate" type="number" min="0" max="100" step="1" value="15"><span class="suffix">%</span></div></div>
+            <div class="field"><label for="ampOppRate">Meeting-to-opportunity rate</label><div class="control"><input id="ampOppRate" type="number" min="0" max="100" step="1" value="35"><span class="suffix">%</span></div></div>
+            <div class="field"><label for="ampWinRate">Opportunity win rate</label><div class="control"><input id="ampWinRate" type="number" min="0" max="100" step="1" value="25"><span class="suffix">%</span></div></div>
+            <div class="field"><label for="ampAcv">Average contract value</label><div class="control"><span class="prefix">$</span><input id="ampAcv" type="number" min="0" step="1000" value="20000"></div></div>
+            <div class="field"><label for="ampMargin">Gross margin</label><div class="control"><input id="ampMargin" type="number" min="0" max="100" step="1" value="80"><span class="suffix">%</span></div></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>AI amplification levers</h2><span class="section-tag tag-agent">AI LEVERS</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="ampVolumeUplift">More outreach volume</label><div class="control"><input id="ampVolumeUplift" type="number" min="0" max="500" step="5" value="40"><span class="suffix">%</span></div><p class="helper">AI drafting, sequencing, and list-building put more at-bats in play</p></div>
+            <div class="field"><label for="ampReplyUplift">Higher reply rate</label><div class="control"><input id="ampReplyUplift" type="number" min="0" max="500" step="5" value="25"><span class="suffix">%</span></div><p class="helper">Personalization and account intelligence make each touch land better</p></div>
+            <div class="field"><label for="ampMeetingUplift">More replies become meetings</label><div class="control"><input id="ampMeetingUplift" type="number" min="0" max="500" step="5" value="10"><span class="suffix">%</span></div><p class="helper">Instant follow-up and better targeting — no reply waits, none drops</p></div>
+            <div class="field"><label for="ampRealization">Realization rate</label><div class="control"><input id="ampRealization" type="number" min="0" max="100" step="5" value="60"><span class="suffix">%</span></div><p class="helper">The honesty dial: share of the theoretical uplift you actually capture after adoption and deliverability limits</p></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><h2>AI cost</h2><span class="section-tag">COST</span></div>
+          <div class="field-grid">
+            <div class="field"><label for="ampAiSeat">AI cost per rep</label><div class="control"><span class="prefix">$</span><input id="ampAiSeat" type="number" min="0" step="50" value="500"><span class="suffix">/mo</span></div><p class="helper">Licenses, usage, and data for one amplified rep</p></div>
+            <div class="field"><label for="ampPlatformFee">Annual platform / implementation</label><div class="control"><span class="prefix">$</span><input id="ampPlatformFee" type="number" min="0" step="1000" value="15000"></div><p class="helper">Team-level platform, integrations, and rollout</p></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel results" aria-live="polite" aria-label="Calculated results">
+        <div class="verdict">
+          <div class="verdict-label">Amplification verdict</div>
+          <h2 id="ampVerdictTitle">Same team. 51% more meetings.</h2>
+          <p id="ampVerdictCopy">Nobody was replaced. Every rep just produces like one and a half reps — the gain is output, not headcount savings.</p>
+          <span class="advantage" id="ampAdvantage">+51% meetings per rep</span>
+        </div>
+        <div class="result-body">
+          <div class="hero-number">
+            <span class="metric-label">Net gain per rep, year one</span>
+            <strong class="metric-value" id="ampNetPerRep">$0</strong>
+            <div class="metric-note" id="ampTeamNote">Team net gain: —</div>
+          </div>
+
+          <div class="comparison">
+            <div class="bar-group">
+              <div class="bar-head"><span>Meetings / rep / month — amplified</span><strong id="ampMeetingsVal">0</strong></div>
+              <div class="track"><div class="fill fill-agent" id="ampBarFill"></div></div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-head"><span>Meetings / rep / month — today</span><strong id="ampBaseMeetingsVal">0</strong></div>
+              <div class="track"><div class="fill fill-sdr" id="ampBaseBarFill"></div></div>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini"><span>Meetings lift</span><strong id="ampMeetingLift">+0%</strong><em>after the realization discount</em></div>
+            <div class="mini"><span>Revenue per rep — amplified</span><strong id="ampRevenueVal">$0</strong><em id="ampBaseRevenueNote">from $0 today</em></div>
+            <div class="mini"><span>Incremental pipeline / rep</span><strong id="ampIncrPipeline">+$0</strong><em>new opportunities × ACV, per year</em></div>
+            <div class="mini"><span>Equivalent team size</span><strong id="ampEquivReps">0 reps</strong><em>output of the amplified team, in today's reps</em></div>
+            <div class="mini"><span>AI ROI, year one</span><strong id="ampAiRoi">0%</strong><em>net gain ÷ AI cost</em></div>
+            <div class="mini"><span>Payback</span><strong id="ampPaybackVal">—</strong><em>on year-one AI spend</em></div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" id="ampCopyBtn" type="button">Copy executive summary</button>
+            <button class="btn" id="ampCsvBtn" type="button">Download CSV</button>
+            <button class="btn" id="ampResetBtn" type="button">Reset</button>
+          </div>
+          <p class="status" id="ampStatus" role="status"></p>
+
+          <div class="notes">
+            <details>
+              <summary>How the model works</summary>
+              <div class="detail-copy">
+                <p>Your baseline funnel runs touches → replies → meetings → opportunities → closed-won, per rep, per year. Each AI lever lifts its own stage of that funnel, discounted by the realization rate, and the stages compound — more touches, each converting better, is how the meeting count multiplies.</p>
+                <p>Net gain equals incremental gross profit across the team minus year-one AI cost (per-rep seats plus the platform fee). Nobody leaves the model: the output is more pipeline from the same headcount.</p>
+              </div>
+            </details>
+            <details>
+              <summary>What the math does not capture</summary>
+              <div class="detail-copy">
+                <ul>
+                  <li>Deliverability ceilings — inboxes punish raw volume; that is what the realization dial is for</li>
+                  <li>AE capacity: 51% more meetings needs someone to take them</li>
+                  <li>Data quality, territory saturation, and conversation quality</li>
+                  <li>Rep adoption — an uplift nobody uses realizes at 0%</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+          <p class="model-note">Planning model only—not a forecast. Replace every default with your own validated operating data, and make vendors defend the uplift percentages they promise against your realization rate.</p>
+        </div>
+      </aside>
+
+      <!-- Email capture block — live Beehiiv subscribe form, same embed as the
+           other views (one publication form for the whole suite). -->
+      <section class="email-capture" aria-label="Email signup">
+        <h2>Get the Agent vs. playbook in your inbox</h2>
+        <p>The model guide, honest benchmarks, and new calculators as we build them. We model, we don't market.</p>
+        <iframe class="beehiiv-embed" src="https://subscribe-forms.beehiiv.com/v3/forms/8625f60e-2189-474d-aa23-2497c6e48e3c?referrer=https%3A%2F%2Fsalesquants.com%2F" title="Subscribe to SalesQuants — get the Agent vs. playbook in your inbox" loading="lazy"></iframe>
+      </section>
+
+      <!-- Saved scenarios (stored on-device in localStorage) -->
+      <section class="panel scenarios" aria-label="Saved scenarios">
+        <h2>Saved scenarios</h2>
+        <p class="helper">Save this run's inputs under a name and reload them later. Scenarios live only on this device.</p>
+        <div class="scenario-save">
+          <div class="control"><input type="text" id="ampScenarioName" placeholder="Scenario name — e.g. 5-rep team, vendor promises" aria-label="Scenario name"></div>
+          <button class="btn btn-primary" id="ampSaveScenarioBtn" type="button">Save</button>
+        </div>
+        <ul class="scenario-list" id="ampScenarioList"></ul>
+        <p class="scenario-empty" id="ampScenarioEmpty">No saved scenarios yet.</p>
+        <p class="status" id="ampScenarioStatus" role="status"></p>
+      </section>
+    </section>
   </main>
 
   <script src="model.js"></script>
   <script src="model-rep.js"></script>
+  <script src="model-amplified.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

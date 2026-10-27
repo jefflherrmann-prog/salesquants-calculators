@@ -5,19 +5,20 @@ a dependency-free PWA (vanilla HTML/CSS/JS, no build step) that can later
 wrap with Capacitor unchanged for the App Store / Google Play.
 Step 1 (2026-10-25): app skeleton + Agent vs. SDR. Step 2 (2026-10-25):
 Agent vs. Rep ported in, same extract-and-verify method. Step 3 (2026-10-25):
-the real Beehiiv subscribe form wired into both calculator views.
+the real Beehiiv subscribe form wired into every calculator view.
 
 ## What's in here
 
 | File | Purpose |
 |---|---|
-| `index.html` | Mobile-first app shell: brand header, calculator picker, and the SDR and Rep calculator views. |
+| `index.html` | Mobile-first app shell: brand header, calculator picker, and the SDR, Rep and Amplified calculator views. |
 | `model.js` | The SDR model — pure functions, no DOM. Loads in the browser (`window.SQModel`) and in Node (`module.exports`) for testing. |
 | `model-rep.js` | The Rep model — same pattern (`window.SQRepModel`): sanitized inputs (the source's `read()` clamps) plus `computeModel()`. |
-| `app.js` | UI logic: hash routing (`#/` picker, `#/sdr`, `#/rep`), result rendering, executive summaries, CSV export (SDR), saved scenarios. |
+| `model-amplified.js` | The Amplified Rep model — same pattern (`window.SQAmpModel`): baseline funnel plus AI uplift levers discounted by a realization rate. |
+| `app.js` | UI logic: hash routing (`#/` picker, `#/sdr`, `#/rep`, `#/amp`), result rendering, executive summaries, CSV export (SDR, Amplified), saved scenarios. |
 | `styles.css` | The live calculators' color system and components (panels, verdict, bars, mini-grid, Rep scenario cards, CTA blocks), single-column mobile layout. |
 | `manifest.webmanifest` | `SalesQuants — Agent vs. Calculators`, `display: standalone`, theme `#172c1c`, background `#f5f6f2`. |
-| `sw.js` | Service worker: cache-first app shell for full offline use. Currently `sq-calc-app-v3` (v2 added `model-rep.js`; v3 wired the live Beehiiv form). Bump `CACHE_VERSION` when any shell file changes. |
+| `sw.js` | Service worker: cache-first app shell for full offline use. Currently `sq-calc-app-v4` (v2 added `model-rep.js`; v3 wired the live Beehiiv form; v4 added the Amplified Rep calculator, `model-amplified.js`). Bump `CACHE_VERSION` when any shell file changes. |
 | `icons/` | `icon.svg` source + rendered `icon-192.png` / `icon-512.png` (lime SQ monogram + keypad dots on ink green `#172c1c`, matching the brand palette). |
 
 ## The app today
@@ -40,7 +41,7 @@ the real Beehiiv subscribe form wired into both calculator views.
   commission disclosure as the live suite pages) followed by the email capture block.
   Rep: the email capture block only — no affiliate CTA (Instantly is SDR-page only),
   matching the live Rep page's arrangement.
-- **Saved scenarios** (both calculators): name and save the current inputs, load or
+- **Saved scenarios** (all calculators): name and save the current inputs, load or
   delete them later. Stored in `localStorage` on-device only — SDR under
   `sq.agentVsSdr.scenarios.v1`, Rep under `sq.agentVsRep.scenarios.v1`. Each
   calculator also quietly restores your last-used inputs on reopen
@@ -117,7 +118,7 @@ were removed; the form needs no app JS.
 
 Verification: the form URL returns HTTP 200 and its HTML contains the form
 (the "Send it to me" button and the playbook heading); a static check of the
-served app confirms exactly two iframes with the correct `src`, no
+served app confirms one iframe per calculator view with the correct `src`, no
 `BEEHIIV EMBED PLACEHOLDER` markers or placeholder element ids left anywhere,
 and balanced section tags; both models still produce the verified step-1/2
 default outputs (SDR agent net $219,300, SDR net $83,400, ROI 311.1%,

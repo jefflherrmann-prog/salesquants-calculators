@@ -1,13 +1,14 @@
 /* SalesQuants calculator app — service worker.
  * Cache-first for the app shell so the calculators work fully offline.
  * Bump CACHE_VERSION whenever any shell file changes. */
-var CACHE_VERSION = 'sq-calc-app-v3';
+var CACHE_VERSION = 'sq-calc-app-v4';
 var APP_SHELL = [
   './',
   './index.html',
   './styles.css',
   './model.js',
   './model-rep.js',
+  './model-amplified.js',
   './app.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
